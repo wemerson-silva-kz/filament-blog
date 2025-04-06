@@ -13,9 +13,8 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('blog_categories', function (Blueprint $table) {
-            $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->primary();
             $table->longText('description')->nullable();
             $table->boolean('is_visible')->default(false);
             $table->timestamps();
@@ -33,11 +32,11 @@ return new class () extends Migration {
         });
 
         Schema::create('blog_posts', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('blog_author_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('blog_category_id')->nullable()->constrained()->nullOnDelete();
+            // $table->foreignId('blog_category_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreign('blog_category_id')->references('id')->on('blog_categories')->onDelete('set null');
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->primary();
             $table->text('excerpt')->nullable();
             $table->string('banner')->nullable();
             $table->longText('content');
