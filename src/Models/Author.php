@@ -29,6 +29,8 @@ class Author extends Model
      */
     protected $table = 'blog_authors';
 
+   
+
     /**
      * @var array<int, string>
      */

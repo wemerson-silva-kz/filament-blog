@@ -34,6 +34,20 @@ class Post extends Model
      */
     protected $table = 'blog_posts';
 
+     /**
+     * Indicates if the model should be incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**
      * @var array<int, string>
      */
